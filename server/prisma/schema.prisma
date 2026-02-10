@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String         @id @default(uuid())
+  email        String         @unique
+  passwordHash String         @map("password_hash")
+  createdAt    DateTime       @default(now()) @map("created_at")
+  updatedAt    DateTime       @updatedAt @map("updated_at")
+
+  profile      Profile?
+  tasks        Task[]
+  learning     LearningData[]
+  settings     UserSettings?
+
+  @@map("users")
+}
+
+model Profile {
+  id          String   @id @default(uuid())
+  userId      String   @unique @map("user_id")
+  firstName   String?  @map("first_name")
+  lastName    String?  @map("last_name")
+  avatarUrl   String?  @map("avatar_url")
+  bio         String?
+  constraints String?
+  university  String?
+  major       String?
+  yearOfStudy String?  @map("year_of_study")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("profiles")
+}
+
+model Task {
+  id               String   @id @default(uuid())
+  userId           String   @map("user_id")
+  title            String
+  category         String
+  estimatedMinutes Int      @map("estimated_minutes")
+  actualMinutes    Int?     @map("actual_minutes")
+  deadline         String
+  energyLevel      String   @map("energy_level")
+  status           String   @default("scheduled")
+  scheduledTime    String?  @map("scheduled_time")
+  postponeCount    Int      @default(0) @map("postpone_count")
+  postponeReasons  String   @default("[]") @map("postpone_reasons")
+  completedAt      String?  @map("completed_at")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("tasks")
+}
+
+model LearningData {
+  id               String @id @default(uuid())
+  userId           String @map("user_id")
+  category         String
+  totalEstimated   Int    @default(0) @map("total_estimated")
+  totalActual      Int    @default(0) @map("total_actual")
+  completedCount   Int    @default(0) @map("completed_count")
+  accuracy         Float  @default(0)
+  adjustmentFactor Float  @default(1) @map("adjustment_factor")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, category])
+  @@map("learning_data")
+}
+
+model UserSettings {
+  id                   String @id @default(uuid())
+  userId               String @unique @map("user_id")
+  workStartHour        Int    @default(8) @map("work_start_hour")
+  workEndHour          Int    @default(22) @map("work_end_hour")
+  lunchStartHour       Int    @default(12) @map("lunch_start_hour")
+  lunchDurationMinutes Int    @default(60) @map("lunch_duration_minutes")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_settings")
+}

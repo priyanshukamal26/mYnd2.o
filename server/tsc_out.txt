@@ -1,0 +1,15 @@
+STDOUT:
+src/routes/learning.ts(32,21): error TS2322: Type 'string | string[]' is not assignable to type 'string'.
+  Type 'string[]' is not assignable to type 'string'.
+src/routes/learning.ts(44,17): error TS2322: Type 'string | string[]' is not assignable to type 'string'.
+  Type 'string[]' is not assignable to type 'string'.
+src/routes/tasks.ts(59,22): error TS2322: Type 'string | string[]' is not assignable to type 'string | StringFilter<"Task"> | undefined'.
+  Type 'string[]' is not assignable to type 'string | StringFilter<"Task"> | undefined'.
+src/routes/tasks.ts(74,22): error TS2322: Type 'string | string[]' is not assignable to type 'string | undefined'.
+  Type 'string[]' is not assignable to type 'string'.
+src/routes/tasks.ts(101,22): error TS2322: Type 'string | string[]' is not assignable to type 'string | StringFilter<"Task"> | undefined'.
+  Type 'string[]' is not assignable to type 'string | StringFilter<"Task"> | undefined'.
+src/routes/tasks.ts(109,45): error TS2322: Type 'string | string[]' is not assignable to type 'string | undefined'.
+  Type 'string[]' is not assignable to type 'string'.
+
+STDERR:
