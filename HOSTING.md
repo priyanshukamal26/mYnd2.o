@@ -25,14 +25,14 @@ The first step is to get your code onto GitHub.
 
 2.  **Create a New Repository on GitHub**:
     -   Go to [github.com/new](https://github.com/new).
-    -   Name your repository (e.g., `mynd-app`).
+    -   Name your repository (e.g., `mynd`).
     -   Make it **Public** or **Private** (Private is recommended for personal projects).
     -   Click **Create repository**.
 
 3.  **Push Your Code**:
     Follow the instructions shown on GitHub under "…or push an existing repository from the command line":
     ```bash
-    git remote add origin https://github.com/YOUR_USERNAME/mynd-app.git
+    git remote add origin https://github.com/YOUR_USERNAME/mynd.git
     git branch -M main
     git push -u origin main
     ```
@@ -64,8 +64,8 @@ Now we deploy the Express server.
 
 1.  Click **"New +"** and select **"Web Service"**.
 2.  **Connect GitHub**:
-    -   If prompted, connect your GitHub account and grant access to the `mynd-app` repository.
-    -   Select `mynd-app` from the list.
+    -   If prompted, connect your GitHub account and grant access to the `mynd` repository.
+    -   Select `mynd` from the list.
 3.  **Configure the Web Service**:
     -   **Name**: `mynd-api`
     -   **Region**: Same as your database.
@@ -113,7 +113,7 @@ Your production database is empty. You need to push the schema to it.
 Finally, deploy the React frontend.
 
 1.  Click **"New +"** and select **"Static Site"**.
-2.  Select your `mynd-app` repository again.
+2.  Select your `mynd` repository again.
 3.  **Configure the Static Site**:
     -   **Name**: `mynd-site`
     -   **Branch**: `main`
