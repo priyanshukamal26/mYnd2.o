@@ -71,15 +71,27 @@ function scoreTask(task: Task, availableMinutes: number, currentHour: number): n
   return urgency * 0.4 + priority * 0.3 + timeFit * 0.2 + energy * 0.1;
 }
 
+import { useAuth } from '@/contexts/AuthContext';
+
 export function useTasks() {
+  const { user } = useAuth();
   const [tasks, setTasks] = useState<Task[]>([]);
   const [learning, setLearning] = useState<LearningData[]>([]);
   const [settings, setSettings] = useState<UserSettings>(DEFAULT_SETTINGS);
   const [loaded, setLoaded] = useState(false);
 
-  // Load all data from API
+  // Load all data from API when user changes
   useEffect(() => {
-    if (!getToken()) return;
+    if (!user) {
+      // User logged out: clear data
+      setTasks([]);
+      setLearning([]);
+      setSettings(DEFAULT_SETTINGS);
+      setLoaded(false);
+      return;
+    }
+
+    // User logged in: fetch data
     Promise.all([
       api.tasks.list().catch(() => []),
       api.learning.list().catch(() => []),
@@ -97,7 +109,7 @@ export function useTasks() {
       }
       setLoaded(true);
     });
-  }, []);
+  }, [user]);
 
   const addTask = useCallback(async (task: Omit<Task, 'id' | 'createdAt' | 'status' | 'postponeCount' | 'postponeReasons'>) => {
     // Apply learning adjustment

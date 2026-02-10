@@ -1,73 +1,65 @@
-# Welcome to your Lovable project
+# mYnd2.0 🧠
 
-## Project info
+**mYnd2.0** is a comprehensive productivity and analytics platform designed specifically for students. It goes beyond simple to-do lists by integrating **energy level tracking**, **learning pattern analysis**, and **automated scheduling**.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+![Project Status](https://img.shields.io/badge/status-active-success.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-## How can I edit this code?
+## ✨ Key Features
 
-There are several ways of editing your application.
+-   **Smart Task Management**: Categorize tasks (Essay, P-Set, Reading) and assign estimated time & energy levels.
+-   **Automated Daily Plan**: Algorithmically generates a daily schedule based on your available hours and energy peaks.
+-   **Learning Analytics**: The system "learns" your work patterns. If you consistently underestimate "Problem Sets" by 20%, mYnd will automatically adjust future estimates.
+-   **Insights Dashboard**: Visual analytics using Recharts to show weekly focus, category distribution, and estimation accuracy.
+-   **Full Privacy**: All data is isolated per user. Secure JWT authentication.
 
-**Use Lovable**
+## 🛠️ Tech Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+**Frontend**
+-   **Framework**: React 18 + Vite
+-   **UI Library**: shadcn/ui + Tailwind CSS
+-   **Animations**: Framer Motion
+-   **Charts**: Recharts
+-   **State**: TanStack Query + Context API
 
-Changes made via Lovable will be committed automatically to this repo.
+**Backend**
+-   **Server**: Node.js + Express
+-   **Database**: SQLite (Local) / PostgreSQL (Production)
+-   **ORM**: Prisma 6
+-   **Auth**: JWT (JSON Web Tokens) + bcrypt
 
-**Use your preferred IDE**
+## 🚀 Quick Start (Local)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+**Windows Users:**
+Simply double-click the `start.bat` file in the root directory.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+**Manual Setup:**
+```bash
+# 1. Install dependencies
+npm install && cd server && npm install && cd ..
 
-Follow these steps:
+# 2. Setup Database
+cd server && npx prisma db push && cd ..
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+# 3. Run
+npm run dev:full
 ```
 
-**Edit a file directly in GitHub**
+See [SETUP.md](./SETUP.md) for detailed instructions.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📂 Project Structure
 
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```
+mYnd2.0/
+├── src/                # Frontend React App
+│   ├── components/     # Reusable UI components
+│   ├── pages/          # Route pages (Dashboard, Auth, Insights)
+│   ├── contexts/       # Global state (Auth, Tasks)
+│   └── lib/            # Utilities & API client
+├── server/             # Backend Express App
+│   ├── src/
+│   │   ├── routes/     # API Endpoints
+│   │   └── middleware/ # Auth middleware
+│   └── prisma/         # Database Schema
+└── public/             # Static assets
+```
