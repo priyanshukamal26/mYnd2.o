@@ -1,6 +1,6 @@
-# Deploying mYnd2.0 to Production (Render) ☁️
+# Deploying mYnd2.o to Production (Render) ☁️
 
-This document is a comprehensive guide for deploying the **mYnd2.0** application to [Render.com](https://render.com). It covers setting up a PostgreSQL database, deploying the backend API, and hosting the frontend.
+This document is a comprehensive guide for deploying the **mYnd2.o** application to [Render.com](https://render.com). It covers setting up a PostgreSQL database, deploying the backend API, and hosting the frontend.
 
 **Prerequisites:**
 1.  **GitHub Account**: You need a GitHub account to host your code.
@@ -25,14 +25,14 @@ The first step is to get your code onto GitHub.
 
 2.  **Create a New Repository on GitHub**:
     -   Go to [github.com/new](https://github.com/new).
-    -   Name your repository (e.g., `mynd`).
+    -   Name your repository (e.g., `mYnd2.o`).
     -   Make it **Public** or **Private** (Private is recommended for personal projects).
     -   Click **Create repository**.
 
 3.  **Push Your Code**:
     Follow the instructions shown on GitHub under "…or push an existing repository from the command line":
     ```bash
-    git remote add origin https://github.com/YOUR_USERNAME/mynd.git
+    git remote add origin https://github.com/YOUR_USERNAME/mYnd2.o.git
     git branch -M main
     git push -u origin main
     ```
@@ -41,7 +41,7 @@ The first step is to get your code onto GitHub.
 
 ## Part 2: Create the Database (PostgreSQL)
 
-mYnd2.0 uses SQLite locally but requires PostgreSQL for production. Render provides a free PostgreSQL database.
+mYnd2.o uses SQLite locally but requires PostgreSQL for production. Render provides a free PostgreSQL database.
 
 1.  Log in to your [Render Dashboard](https://dashboard.render.com/).
 2.  Click the **"New +"** button and select **"PostgreSQL"**.
@@ -64,8 +64,8 @@ Now we deploy the Express server.
 
 1.  Click **"New +"** and select **"Web Service"**.
 2.  **Connect GitHub**:
-    -   If prompted, connect your GitHub account and grant access to the `mynd` repository.
-    -   Select `mynd` from the list.
+    -   If prompted, connect your GitHub account and grant access to the `mYnd2.o` repository.
+    -   Select `mYnd2.o` from the list.
 3.  **Configure the Web Service**:
     -   **Name**: `mynd-api`
     -   **Region**: Same as your database.
@@ -113,7 +113,7 @@ Your production database is empty. You need to push the schema to it.
 Finally, deploy the React frontend.
 
 1.  Click **"New +"** and select **"Static Site"**.
-2.  Select your `mynd` repository again.
+2.  Select your `mYnd2.o` repository again.
 3.  **Configure the Static Site**:
     -   **Name**: `mynd-site`
     -   **Branch**: `main`
@@ -122,13 +122,13 @@ Finally, deploy the React frontend.
     -   **Publish Directory**: `dist`
 4.  **Environment Variables**:
     -   **Key**: `VITE_API_URL`
-        -   **Value**: Paste your **Backend URL** from Part 3 (e.g., `https://mynd-api.onrender.com`).
+        -   **Value**: Paste your **Backend URL** from Part 3 (e.g., `https://mYnd2.o-api.onrender.com`).
         -   *Note: Do not include a trailing slash.*
 5.  Click **"Create Static Site"**.
 
 **Wait for Deployment**: Render will build your React app.
 
-**Copy the Frontend URL**: It will look like `https://mynd-site.onrender.com`.
+**Copy the Frontend URL**: It will look like `https://mYnd2.o-site.onrender.com`.
 
 ---
 
@@ -140,7 +140,7 @@ For security, the backend usually blocks requests from unknown domains. We need 
 2.  Click **"Environment"**.
 3.  Add a new variable:
     -   **Key**: `CORS_ORIGIN`
-    -   **Value**: Paste your **Frontend URL** (e.g., `https://mynd-site.onrender.com`).
+    -   **Value**: Paste your **Frontend URL** (e.g., `https://mYnd2.o-site.onrender.com`).
 4.  Click **"Save Changes"**.
 5.  Render may automatically redeploy. If not, go to the top right and click **"Manual Deploy"** -> **"Deploy latest commit"**.
 
@@ -148,4 +148,4 @@ For security, the backend usually blocks requests from unknown domains. We need 
 
 ## 🎉 Done!
 
-Your mYnd2.0 application is now live on the internet! Visit your frontend URL to start using it.
+Your mYnd2.o application is now live on the internet! Visit your frontend URL to start using it.
